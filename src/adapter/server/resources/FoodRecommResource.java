@@ -1,6 +1,6 @@
 package adapter.server.resources;
 
-import adapter.client.FoodRecommendation;
+import adapter.server.externalService.FoodRecommendation;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -22,8 +22,6 @@ public class FoodRecommResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
     public String getFoodRecomm() {
-        String foodrecomm = FoodRecommendation.getFoodRecomm();
-        System.out.println(foodrecomm);
-        return foodrecomm;
+        return FoodRecommendation.getFoodRecomm();
     }
 }

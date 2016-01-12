@@ -1,6 +1,6 @@
 package adapter.server.resources;
 
-import adapter.client.Quote;
+import adapter.server.externalService.Quote;
 
 import javax.ejb.LocalBean;
 import javax.ejb.Stateless;
@@ -19,7 +19,7 @@ import javax.ws.rs.core.MediaType;
 @Path("/quote")
 public class QuoteResource {
     @GET
-    @Produces({ MediaType.APPLICATION_JSON, MediaType.TEXT_HTML, MediaType.TEXT_PLAIN })
+    @Produces({ MediaType.APPLICATION_JSON})
     public String getQuote() {
         return  Quote.getQuote();
     }

@@ -1,4 +1,4 @@
-package adapter.client;
+package adapter.server.externalService;
 
 import org.glassfish.jersey.client.ClientConfig;
 
@@ -8,7 +8,6 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
-import java.io.IOException;
 import java.net.URI;
 
 /**
@@ -21,14 +20,6 @@ public class FoodRecommendation {
     private static WebTarget service;
     private static Response response;
 
-    public static void main(String[] args) throws IOException {
-        ClientConfig clientConfig = new ClientConfig();
-        Client client = ClientBuilder.newClient(clientConfig);
-        service = client.target(getBaseURI());
-
-        FoodRecommendation.getFoodRecomm();
-    }
-
     private static URI getBaseURI() {
         return UriBuilder.fromUri(
                 //Change here for passing params like low-fat,low-sugar, No-oil-added
@@ -36,6 +27,9 @@ public class FoodRecommendation {
     }
 
     public static String getFoodRecomm() {
+        ClientConfig clientConfig = new ClientConfig();
+        Client client = ClientBuilder.newClient(clientConfig);
+        service = client.target(getBaseURI());
         response = service.request().accept(MediaType.APPLICATION_JSON).get();
         String foodRecomm = response.readEntity(String.class);
 
