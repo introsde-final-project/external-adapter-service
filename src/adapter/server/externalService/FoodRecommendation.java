@@ -8,6 +8,10 @@ import javax.ws.rs.client.WebTarget;
 import javax.ws.rs.core.MediaType;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URI;
 
 /**
@@ -20,28 +24,34 @@ public class FoodRecommendation {
     private static WebTarget service;
     private static Response response;
 
-    private static URI getBaseURI() {
-        return UriBuilder.fromUri(
-                //Change here for passing params like low-fat,low-sugar, No-oil-added
-                "https://api.edamam.com/diet?q=low-fat&app_id=1d272993&app_key=4f73030c1d2d61fe38540936a24a7532").build();
+    //Establish connection with external Food Suggestion service.
+    private static URI getBaseURI(String foodType) {
+        return UriBuilder.fromUri("https://api.edamam.com/diet?q=" + foodType + "&app_id=1d272993&app_key=4f73030c1d2d61fe38540936a24a7532").build();
     }
 
-    public static String getFoodRecomm() {
+    public static String getFoodRecomm(String foodType) throws IOException {
         ClientConfig clientConfig = new ClientConfig();
         Client client = ClientBuilder.newClient(clientConfig);
-        service = client.target(getBaseURI());
+
+        BufferedWriter bufferedWriter;
+        service = client.target(getBaseURI(foodType));
+
+        File log = new File("././food-recomm.log");
+        FileWriter fileWriter = new FileWriter(log.getAbsoluteFile());
+        bufferedWriter = new BufferedWriter(fileWriter);
+        printAndSaveInLog(bufferedWriter, "External Service URL: " + service.getUri());
+        printAndSaveInLog(bufferedWriter, "\n");
+
         response = service.request().accept(MediaType.APPLICATION_JSON).get();
         String foodRecomm = response.readEntity(String.class);
+        printAndSaveInLog(bufferedWriter, foodRecomm);
+        bufferedWriter.close();
 
-        /*JSONObject jsonObj = new JSONObject(foodRecomm);
-        JSONArray name = (JSONArray) jsonObj.get("hits");
-        JSONObject namestr = (JSONObject) name.get(0);
-        JSONObject namest = (JSONObject) namestr.get("recipe");
-        System.out.println(namest.get("label"));
-        System.out.println(namest.get("totalNutrients"));
-        System.out.println(namest.get("ingredients"));*/
-
-        System.out.println(foodRecomm);
         return foodRecomm;
+    }
+
+    private static void printAndSaveInLog(BufferedWriter bufferwriter, String outputResponse) throws IOException {
+        System.out.println(outputResponse);
+        bufferwriter.write(outputResponse + "\n");
     }
 }
