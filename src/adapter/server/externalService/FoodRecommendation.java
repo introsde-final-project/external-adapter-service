@@ -24,7 +24,8 @@ public class FoodRecommendation {
     private static WebTarget service;
     private static Response response;
 
-    //Establish connection with external Food Suggestion service.
+    /* Establish connection with external Food Suggestion service and obtains food according to the specified foodType. */
+
     private static URI getBaseURI(String foodType) {
         return UriBuilder.fromUri("https://api.edamam.com/diet?q=" + foodType + "&app_id=1d272993&app_key=4f73030c1d2d61fe38540936a24a7532").build();
     }
@@ -50,8 +51,9 @@ public class FoodRecommendation {
         return foodRecomm;
     }
 
+    /* Method to save the contents in log file */
+
     private static void printAndSaveInLog(BufferedWriter bufferwriter, String outputResponse) throws IOException {
-        System.out.println(outputResponse);
         bufferwriter.write(outputResponse + "\n");
     }
 }

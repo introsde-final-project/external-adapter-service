@@ -18,7 +18,9 @@ import javax.ws.rs.core.Response;
 @LocalBean // Used only if the the application is deployed in a Java EE container
 
 @Path("/quote")
-//Home Path for Quotation
+
+/* Home Path for Quotation */
+
 public class QuoteResource {
     @GET
     @Produces({ MediaType.APPLICATION_JSON})

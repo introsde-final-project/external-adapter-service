@@ -22,7 +22,8 @@ public class Quote {
     private static WebTarget service;
     private static Response response;
 
-    //Establish connection with external Quote service.
+    /* Establish connection with external Quote service. */
+
     private static URI getBaseURI() {
         return UriBuilder.fromUri("http://quotesondesign.com/api/3.0/api-3.0.json").build();
     }
@@ -46,8 +47,9 @@ public class Quote {
         return quote;
     }
 
+    /* Method to save the contents in log file */
+
     private static void printAndSaveInLog(BufferedWriter bufferwriter, String outputResponse) throws IOException {
-        System.out.println(outputResponse);
         bufferwriter.write(outputResponse + "\n");
     }
 }

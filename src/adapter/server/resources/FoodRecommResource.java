@@ -19,7 +19,9 @@ import javax.ws.rs.core.Response;
 @LocalBean // Used only if the the application is deployed in a Java EE container
 
 @Path("/foodrecomm")
-//Home Path for FoodRecommendation
+
+/* Home Path for FoodRecommendation */
+
 public class FoodRecommResource {
     @GET
     @Produces({MediaType.APPLICATION_JSON})
