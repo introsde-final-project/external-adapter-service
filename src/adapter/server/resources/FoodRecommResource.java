@@ -20,7 +20,9 @@ import javax.ws.rs.core.Response;
 
 @Path("/foodrecomm")
 
-/* Home Path for FoodRecommendation */
+/*     Request to obtain Food Recommendation.
+       Expected Input: FoodType
+       Expected Output: Food Recommendation (String) */
 
 public class FoodRecommResource {
     @GET

@@ -30,6 +30,10 @@ public class FoodRecommendation {
         return UriBuilder.fromUri("https://api.edamam.com/diet?q=" + foodType + "&app_id=1d272993&app_key=4f73030c1d2d61fe38540936a24a7532").build();
     }
 
+    /*  Request to obtain Food Recommendation.
+       Expected Input: FoodType
+       Expected Output: Food Recommendation (String) */
+
     public static String getFoodRecomm(String foodType) throws IOException {
         ClientConfig clientConfig = new ClientConfig();
         Client client = ClientBuilder.newClient(clientConfig);

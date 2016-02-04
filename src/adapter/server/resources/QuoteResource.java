@@ -19,7 +19,9 @@ import javax.ws.rs.core.Response;
 
 @Path("/quote")
 
-/* Home Path for Quotation */
+/*  Request to obtain quote.
+   Expected Input: -
+   Expected Output: Quote (String) */
 
 public class QuoteResource {
     @GET

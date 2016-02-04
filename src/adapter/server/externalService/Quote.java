@@ -28,6 +28,10 @@ public class Quote {
         return UriBuilder.fromUri("http://quotesondesign.com/api/3.0/api-3.0.json").build();
     }
 
+    /*  Request to obtain quote.
+        Expected Input: -
+        Expected Output: Quote (String) */
+
     public static String getQuote() throws IOException {
         ClientConfig clientConfig = new ClientConfig();
         Client client = ClientBuilder.newClient(clientConfig);
