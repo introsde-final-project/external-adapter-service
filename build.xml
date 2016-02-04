@@ -103,7 +103,7 @@
                 </fileset>
             </copy>
         </target>
-        <target name="run" depends="install">
+        <target name="start" depends="install">
             <echo message="app start adapter.server.App in ${build.dir}" />
             <java classname="adapter.server.App" classpath="${build.dir}" fork="true">
                 <arg value="$JAVA_OPTS  -cp" />
