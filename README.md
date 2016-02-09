@@ -51,7 +51,7 @@ Business Logic Service implements all the logics that are used in this applicati
 Process Centric Service handles all the requests that changes the state of this application. It obtains data from User Interface Service as a JSON object through REST and pass it to the Storage Service in the same format after performing operations that change the state of the application.
 
 #### [User Interface Service](https://github.com/introsde-final-project/user-interface-service)
-User Interface Service provides interface where the user interacts with the application. This service passes JSON object through RESTful APIs to interact with Business Logic Layer where it gets all the User related data and Process Centric Layer where it sends all data.
+User Interface Service provides interface where the user interacts with the application. This service passes JSON object through RESTful APIs to interact with Business Logic Layer where it gets all the User related data and Process Centric Layer where it sends all data. Further information on this service can be found in its [Wiki Page](https://github.com/introsde-final-project/user-interface-service/wiki)
  
 
 ### FURTHER ENHANCEMENTS
